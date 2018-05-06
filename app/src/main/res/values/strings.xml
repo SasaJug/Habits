@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Habits</string>
+    <string name="habit_icon">Habit icon</string>
+    <string name="create_new_habit">Create New Habit…</string>
+</resources>
