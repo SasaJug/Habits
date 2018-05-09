@@ -2,4 +2,6 @@
     <string name="app_name">Habits</string>
     <string name="habit_icon">Habit icon</string>
     <string name="create_new_habit">Create New Habit…</string>
+    <string name="chooser_select_image_title">Select habit Image</string>
+    <string name="image_is_missing">Image is missing</string>
 </resources>
