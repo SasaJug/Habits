@@ -1,5 +1,9 @@
 package com.sasaj.habits.ui
 
+/**
+ * Created by sjugurdzija on 5/10/2018
+ */
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -12,6 +16,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import android.graphics.BitmapFactory
 import android.content.res.AssetFileDescriptor
+import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_create_habit.*
 import java.io.FileNotFoundException
 
@@ -30,9 +35,9 @@ class CreateHabitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_habit)
     }
 
-    fun storeHabit(v: View){
+    fun storeHabit(v: View) {
 
-        if(etTitle.text.toString().isBlank() || etTitle.toString() == ""){
+        if (etTitle.isBlank()) {
             titleWrapper.isErrorEnabled = true
             titleWrapper.error = "Title is missing."
         } else {
@@ -40,7 +45,7 @@ class CreateHabitActivity : AppCompatActivity() {
             titleWrapper.error = ""
         }
 
-        if(etDescription.text.toString().isBlank()){
+        if (etDescription.isBlank()) {
             descriptionWrapper.isErrorEnabled = true
             descriptionWrapper.error = "Description is missing."
         } else {
@@ -48,7 +53,7 @@ class CreateHabitActivity : AppCompatActivity() {
             descriptionWrapper.error = ""
         }
 
-        if(bm == null){
+        if (bm == null) {
             imageError.visibility = View.VISIBLE
         } else {
             imageError.visibility = View.GONE
@@ -56,7 +61,7 @@ class CreateHabitActivity : AppCompatActivity() {
 
     }
 
-    fun chooseImage(v: View){
+    fun chooseImage(v: View) {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -66,7 +71,7 @@ class CreateHabitActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if(requestCode != CHOOSE_IMAGE || resultCode != Activity.RESULT_OK) {
+        if (requestCode != CHOOSE_IMAGE || resultCode != Activity.RESULT_OK) {
             return
         }
         val selectedImageUri: Uri = data.data
@@ -111,3 +116,5 @@ class CreateHabitActivity : AppCompatActivity() {
         return actuallyUsableBitmap
     }
 }
+
+private fun EditText.isBlank(): Boolean = this.text.toString().isBlank()
