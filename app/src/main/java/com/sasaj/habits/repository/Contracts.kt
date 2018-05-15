@@ -7,7 +7,7 @@ package com.sasaj.habits.repository
 import android.provider.BaseColumns
 
 val DATABASE_NAME = "habits.db"
-val DATABASE_VERSION = 10
+val DATABASE_VERSION = 11
 
 object HabitEntry : BaseColumns {
     val TABLE_NAME = "habit"

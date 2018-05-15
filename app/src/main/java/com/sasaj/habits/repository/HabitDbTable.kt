@@ -14,7 +14,7 @@ class HabitDbTable(context: Context) {
         val values = ContentValues()
         values.put(HabitEntry.TITLE_COL, habit.title)
         values.put(HabitEntry.DESCRIPTION_COL, habit.description)
-//        values.put(HabitEntry.IMAGE_COL, habit.imageUri.toString())
+        values.put(HabitEntry.IMAGE_COL, habit.imageUrl)
 
         dbHelper.transaction { insert(HabitEntry.TABLE_NAME, null, values) }
 
