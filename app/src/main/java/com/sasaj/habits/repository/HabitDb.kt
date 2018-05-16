@@ -9,11 +9,11 @@ class HabitDb(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
     private val SQL_CREATE_ENTRIES = "CREATE TABLE ${HabitEntry.TABLE_NAME} (" +
             "${HabitEntry._ID} INTEGER PRIMARY KEY, " +
             "${HabitEntry.TITLE_COL} TEXT, " +
-            "${HabitEntry.DESCRIPTION_COL} TEXT" +
+            "${HabitEntry.DESCRIPTION_COL} TEXT, " +
             "${HabitEntry.IMAGE_COL} TEXT" +
             ")"
 
-    private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${HabitEntry.TITLE_COL}"
+    private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${HabitEntry.TABLE_NAME}"
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(SQL_CREATE_ENTRIES)

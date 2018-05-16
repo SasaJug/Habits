@@ -11,7 +11,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import com.sasaj.habits.R
+import com.sasaj.habits.domain.Habit
+import com.sasaj.habits.repository.HabitDbTable
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_create_habit.*
 
@@ -33,6 +36,7 @@ class CreateHabitActivity : AppCompatActivity() {
         if (etTitle.isBlank()) {
             titleWrapper.isErrorEnabled = true
             titleWrapper.error = "Title is missing."
+            return
         } else {
             titleWrapper.isErrorEnabled = false
             titleWrapper.error = ""
@@ -41,6 +45,7 @@ class CreateHabitActivity : AppCompatActivity() {
         if (etDescription.isBlank()) {
             descriptionWrapper.isErrorEnabled = true
             descriptionWrapper.error = "Description is missing."
+            return
         } else {
             descriptionWrapper.isErrorEnabled = false
             descriptionWrapper.error = ""
@@ -48,10 +53,23 @@ class CreateHabitActivity : AppCompatActivity() {
 
         if (selectedImageUri == null) {
             imageError.visibility = View.VISIBLE
+            return
         } else {
             imageError.visibility = View.GONE
         }
 
+        val title = etTitle.text.toString()
+        val description = etDescription.text.toString()
+        val imageUrl = selectedImageUri!!.toString()
+
+        val id = HabitDbTable(this).store(Habit(title, description, imageUrl))
+
+        if(id == -1L){
+            Toast.makeText(this, "Habit not saved", Toast.LENGTH_SHORT).show()
+        }else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun chooseImage(v: View) {
